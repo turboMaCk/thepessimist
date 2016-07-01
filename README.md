@@ -6,13 +6,13 @@ Light-weight UNIX style argv option parsing with depression. [Optimist](https://
 
 ## Why?
 
-Parsing command line arguments is essential is essential thing for many programs. Yet I've not found any suitable solution.
+Parsing command line arguments is an essential part of many programs. Yet I haven't found any suitable existing library.
 Using `process.argv` is not enough so everybody ends up writing some parsing layer on top of it.
-[Optimist](https://www.npmjs.com/package/optimist) is now deprecated and its API is way to over complicated.
-[Minimist](https://www.npmjs.com/package/minimist) API is also full of nonsense (e.g. `-abc` => `{ a: true, b:true, c:true }`).
-More importantly the basic idea behind ThePessimist is it's using **defaults** as **whitelist** for actual arguments and forces you to keep convention of having full named version begening with `--` and short one with `-`.
-The idea is to be out of the box defensive to everything which comes from *cruel outside world* and do not bring convention instead of unnecessary options.
-**White-listing by default value** makes it also much more easy to reason about values you're passing around your application.
+[Optimist](https://www.npmjs.com/package/optimist) is now deprecated and its API is way too over complicated.
+[Minimist](https://www.npmjs.com/package/minimist)'s API is also full of nonsense (e.g. `-abc` => `{ a: true, b: true, c: true }`).
+More importantly the basic idea behind ThePessimist is it's using **defaults** as **whitelist** for passed arguments and forces you to keep convention of having full named version beginning with `--` and short one with `-`.
+The idea is to be defensive to everything which comes from *the cruel outside world* and to bring conventios over unnecessary options.
+**White-listing by defaults** makes it also much easier to reason about values you're passing around your application.
 
 [![ScreenShot](http://img.youtube.com/vi/27nNSocP7Dc/0.jpg))](https://www.youtube.com/watch?v=27nNSocP7Dc)
 
@@ -29,7 +29,7 @@ npm install --save thepessimsit
 Open your favorite Emacs and create simple `index.js` file
 
 ```javascript
-var thePessimist = require('thepessimist');
+var thePessimist = require('thepessimist').default;
 
 var defaultValues = {
   flag: false,
@@ -38,7 +38,7 @@ var defaultValues = {
 };
 
 var shortcutMappings = {
-  f: 'falg',
+  f: 'flag',
   l: 'list',
   s: 'single'
 };
@@ -77,13 +77,13 @@ Pretty straight forward, don't you think?
 
 ## Limitations
 
-I decided to do not support numeric values in settings. Numerics are always parsed as string so you can always handle retyping by your self.
-If you try to pass defaults object containing numeric value exception is thrown so you have to deal with parsing numbers even with default value.
+I've decided to not support numeric values parsing. Numbers are always parsed as string so you can always handle retyping by yourself.
+If you try to pass defaults object containing numeric value it throws an exception. This means you have to define numbers as string also in defaults and deal with retyping later.
 
 ## Development
 
 Source code is written in Typescript to make it easier for people who want to use this with typescript.
-Anyway you do not have to has typescript globally installed in order to be able to compile this project yourself.
+Anyway you do not have to has typescript globally installed in order to be able to compile this project by yourself.
 
 First install all dependencies:
 ```
