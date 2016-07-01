@@ -1,0 +1,31 @@
+{
+  "name": "thepessimist",
+  "version": "0.0.1",
+  "description": "Light-weight unix style argv option parsing with depression. Optimist alternative with purer white-list oriented api.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/typescript/bin/tsc ./spec/pessimist-spec.ts --outDir ./spec/compiled && ./node_modules/jasmine/bin/jasmine.js",
+    "build": "./node_modules/typescript/bin/tsc ./index.ts --pretty"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/turbomack/thepessimist.git"
+  },
+  "keywords": [
+    "argv",
+    "options",
+    "cli",
+    "arguments",
+    "parsing"
+  ],
+  "author": "Marek Fajkus",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/turbomack/thepessimist/issues"
+  },
+  "homepage": "https://github.com/turbomack/thepessimist#readme",
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "typescript": "^1.8.10"
+  }
+}
