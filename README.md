@@ -9,9 +9,9 @@ Light-weight UNIX style argv option parsing with depression. [Optimist](https://
 Parsing command line arguments is an essential part of many programs. Yet I haven't found any suitable existing library.
 Using `process.argv` is not enough so everybody ends up writing some parsing layer on top of it.
 [Optimist](https://www.npmjs.com/package/optimist) is now deprecated and its API is way too over complicated.
-[Minimist](https://www.npmjs.com/package/minimist)'s API is also full of nonsense (e.g. `-abc` => `{ a: true, b: true, c: true }`).
+[Minimist](https://www.npmjs.com/package/minimist)'s API is hard to work with since it parse types dynamically.
 More importantly the basic idea behind ThePessimist is it's using **defaults** as **whitelist** for passed arguments and forces you to keep convention of having full named version beginning with `--` and short one with `-`.
-The idea is to be defensive to everything which comes from *the cruel outside world* and to bring conventios over unnecessary options.
+The idea is to be defensive to everything which comes from *the cruel outside world* and to bring conventions over unnecessary options.
 **White-listing by defaults** makes it also much easier to reason about values you're passing around your application.
 
 [![ScreenShot](http://img.youtube.com/vi/27nNSocP7Dc/0.jpg))](https://www.youtube.com/watch?v=27nNSocP7Dc)
@@ -60,7 +60,7 @@ node index.js --single hi
 
 node index.js -f -l just
 {
-  flag: false,
+  flag: true,
   list: ['just'],
   single: 'thing'
 }
