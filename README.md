@@ -1,5 +1,7 @@
 # ThePessimist
 
+[![Build Status](https://travis-ci.org/turboMaCk/thepessimist.svg?branch=master)](https://travis-ci.org/turboMaCk/thepessimist)
+
 Light-weight UNIX style argv option parsing with depression. [Optimist](https://www.npmjs.com/package/optimist) alternative with purer white-list oriented API.
 
 ![Grumpy cat](http://campusriot.com/wp-content/uploads/2014/10/grumpycat.jpg)
