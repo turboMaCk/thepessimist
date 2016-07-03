@@ -10,7 +10,7 @@
 import { NumberArgument as ErrorNumberArgument } from './errors';
 
 function resolveShortcut (val : string, shortcuts?) : string[] {
-    var arr : string[] = val.split('-');
+    const arr : string[] = val.split('-');
     if (arr.length === 1) { return arr; }
     if (arr[0]) { return [val] }
     return ['', shortcuts[arr[1]]];
@@ -18,6 +18,16 @@ function resolveShortcut (val : string, shortcuts?) : string[] {
 
 function parseOption <T> (value : any[], def : T) : T {
     return Array.isArray(def) ? value : value[0];
+}
+
+function sanitiseArgument(argument : string) : string {
+    const arr : string[] = argument.split('-');
+    if (arr.length > 1) {
+        const letters : string[] = arr[1].split('');
+        const upperCased : string = letters[0].toUpperCase() + (letters.slice(1)).join('');
+        return arr[0] + upperCased;
+    }
+    return arr[0];
 }
 
 export default function pessimist <T> (def : T, argv : string[], shortcuts?) : T {
@@ -29,7 +39,7 @@ export default function pessimist <T> (def : T, argv : string[], shortcuts?) : T
 
         if (splited.length > 1) {
             processedArgs.push({
-                argument: splited[1],
+                argument: sanitiseArgument(splited[1]),
                 value: []
             });
         } else {
