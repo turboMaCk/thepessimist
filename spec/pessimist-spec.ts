@@ -100,13 +100,29 @@ describe('options parsing', () => {
     });
 
     describe('defensiveness', () => {
-        const def = {
-            numberopt: 1.0
-        }
 
-        const parsed = cliArgs('--numberopt 2');
         it('do not allow number in defaults', () => {
+            const def = {
+                numberopt: 1.0
+            }
+            const parsed = cliArgs('--numberopt 2');
             expect(pessimist.bind(this, def, parsed)).toThrow();
+        });
+
+        it('dash to cammel calse', () => {
+            const def = {
+                someThing: false
+            };
+            const parsed = cliArgs('--some-thing');
+            expect(pessimist(def, parsed).someThing).toEqual(true);
+        });
+
+        it('do not breaks when - is passed as value', () => {
+            const def = {
+                val: 'def'
+            };
+            const parsed = cliArgs('--val my-value');
+            expect(pessimist(def, parsed).val).toEqual('my-value');
         });
     })
 });

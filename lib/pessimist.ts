@@ -12,6 +12,7 @@ import { NumberArgument as ErrorNumberArgument } from './errors';
 function resolveShortcut (val : string, shortcuts?) : string[] {
     var arr : string[] = val.split('-');
     if (arr.length === 1) { return arr; }
+    if (arr[0]) { return [val] }
     return ['', shortcuts[arr[1]]];
 }
 
@@ -20,7 +21,7 @@ function parseOption <T> (value : any[], def : T) : T {
 }
 
 export default function pessimist <T> (def : T, argv : string[], shortcuts?) : T {
-    var processedArgs = [];
+    var processedArgs : any[] = [];
 
     argv.forEach((val) => {
         var splited = val.split('--');
