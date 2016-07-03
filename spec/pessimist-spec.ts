@@ -78,7 +78,7 @@ describe('options parsing', () => {
 
     describe('break by mutability', () => {
         const def = {
-            onoff: false,
+            onoff: true,
             list: ['hello', 'word'],
             single: 'here'
         };
@@ -86,7 +86,7 @@ describe('options parsing', () => {
         const result = pessimist(def, parsed);
 
         it('has correct keys', () => expect(Object.keys(result)).toEqual(['onoff', 'list', 'single']));
-        it('parse boolean', () => expect(result.onoff).toBe(true));
+        it('parse boolean', () => expect(result.onoff).toBe(false));
         it('parse list', () => expect(result.list).toEqual(['hi', 'there']));
         it('parse string', () => expect(result.single).toEqual('overthere'));
 
@@ -94,7 +94,7 @@ describe('options parsing', () => {
         const result2 = pessimist(def, parsed2);
 
         it('has correct keys', () => expect(Object.keys(result2)).toEqual(['onoff', 'list', 'single']));
-        it('parse boolean', () => expect(result2.onoff).toBe(false));
+        it('parse boolean', () => expect(result2.onoff).toBe(true));
         it('parse list', () => expect(result2.list).toEqual(['hello', 'word']));
         it('parse string', () => expect(result2.single).toEqual('here'));
     });
