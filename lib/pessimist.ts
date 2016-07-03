@@ -51,7 +51,7 @@ export default function pessimist <T> (def : T, argv : string[], shortcuts?) : T
 
     let parsedArgs = {}
     processedArgs.forEach((arg) => {
-        parsedArgs[arg.argument] = arg.value.length === 0 ? [!def[arg.argument]] : arg.value;
+        parsedArgs[arg.argument] = typeof def[arg.argument] === 'boolean' ? [!def[arg.argument]] : arg.value;
     });
 
     let settings : T = Object.create(def);

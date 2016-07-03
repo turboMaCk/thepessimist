@@ -130,6 +130,24 @@ describe('options parsing', () => {
             };
             const parsed = cliArgs('-s value');
             expect(pessimist(def, parsed)).toEqual(def);
-        })
+        });
+
+        describe('respect boolean / string', () => {
+            it('string > bollean', () => {
+                const def = {
+                    val: true
+                };
+                const parsed = cliArgs('--val string');
+                expect(pessimist(def, parsed).val).toEqual(false);
+            });
+
+            it('boolean > string', () => {
+                const def = {
+                    val: 'hi there'
+                };
+                const parsed = cliArgs('--val');
+                expect(pessimist(def, parsed).val).toEqual(undefined);
+            });
+        });
     })
 });
