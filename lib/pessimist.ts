@@ -11,8 +11,7 @@ import { NumberArgument as ErrorNumberArgument } from './errors';
 
 function resolveShortcut (val : string, shortcuts?) : string[] {
     const arr : string[] = val.split('-');
-    if (arr.length === 1) { return arr; }
-    if (arr[0]) { return [val] }
+    if (!shortcuts || arr[0] || arr.length === 1) { return [val] }
     return ['', shortcuts[arr[1]]];
 }
 

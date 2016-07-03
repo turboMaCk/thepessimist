@@ -100,7 +100,6 @@ describe('options parsing', () => {
     });
 
     describe('defensiveness', () => {
-
         it('do not allow number in defaults', () => {
             const def = {
                 numberopt: 1.0
@@ -124,5 +123,13 @@ describe('options parsing', () => {
             const parsed = cliArgs('--val my-value');
             expect(pessimist(def, parsed).val).toEqual('my-value');
         });
+
+        it('do not break when shortcuts do not exist', () => {
+            const def = {
+                val: 'def'
+            };
+            const parsed = cliArgs('-s value');
+            expect(pessimist(def, parsed)).toEqual(def);
+        })
     })
 });
