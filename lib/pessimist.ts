@@ -29,6 +29,15 @@ function sanitiseArgument(argument : string) : string {
     return arr[0];
 }
 
+function throwOnNumbers(maybeNumbers : any) : void {
+    maybeNumbers = Array.isArray(maybeNumbers) ? maybeNumbers : [ maybeNumbers ];
+    maybeNumbers.forEach((value) => {
+        if (typeof value === 'number') {
+            throw ErrorNumberArgument;
+        }
+    });
+}
+
 export default function pessimist <T> (def : T, argv : string[], shortcuts?) : T {
     var processedArgs : any[] = [];
 
@@ -56,9 +65,7 @@ export default function pessimist <T> (def : T, argv : string[], shortcuts?) : T
 
     let settings : T = Object.create(def);
     Object.keys(def).forEach((option) => {
-        if (typeof def[option] === 'number') {
-            throw ErrorNumberArgument;
-        }
+        throwOnNumbers(def[option]);
         settings[option] = parsedArgs[option] ? parseOption(parsedArgs[option], def[option]) : def[option];
     });
 

@@ -108,6 +108,14 @@ describe('options parsing', () => {
             expect(pessimist.bind(this, def, parsed)).toThrow();
         });
 
+        it('do not allow array of number in defaults', () => {
+            const def = {
+                numbers: [1, 2, 3.0]
+            }
+            const parsed = cliArgs('--numberopt 1 2');
+            expect(pessimist.bind(this, def, parsed)).toThrow();
+        });
+
         it('dash to cammel calse', () => {
             const def = {
                 someThing: false
