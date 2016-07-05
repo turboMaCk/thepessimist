@@ -15,7 +15,8 @@ function resolveShortcut (val : string, shortcuts?) : string[] {
     return ['', shortcuts[arr[1]]];
 }
 
-function parseOption <T> (value : any[], def : T) : T {
+function parseOption <T> (value : any[], def : T) : T | string {
+    if (value[0] && typeof def === 'string') { return value.join(' ') }
     return Array.isArray(def) ? value : value[0];
 }
 

@@ -38,7 +38,7 @@ describe('options parsing', () => {
 
         it('has correct keys', () => expect(Object.keys(result)).toEqual(['list', 'single']));
         it('respect array option', () => expect(result.list).toEqual(['one']));
-        it('respect string option', () => expect(result.single).toEqual('over'));
+        it('respect string option', () => expect(result.single).toEqual('over there'));
     });
 
     describe('use defaults if not passed', () => {
@@ -165,5 +165,16 @@ describe('options parsing', () => {
                 expect(pessimist(def, parsed).val).toEqual(undefined);
             });
         });
-    })
+
+        it('respect strings and arrays', () => {
+            const def = {
+                str: '',
+                arr: ['def', 'array']
+            };
+
+            const parsed = cliArgs('--str string with spaces --arr');
+            expect(pessimist(def, parsed).str).toEqual('string with spaces');
+            expect(pessimist(def, parsed).arr).toEqual([]);
+        });
+    });
 });
