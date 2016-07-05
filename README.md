@@ -34,13 +34,14 @@ Open your favorite Emacs and create simple `index.js` file
 var thePessimist = require('thepessimist').default;
 
 var defaultValues = {
-  flag: false,
+  positive: false,
+  negative: true,
   list: ['one', 'two'],
   single: 'thing'
 };
 
 var shortcutMappings = {
-  f: 'flag',
+  p: 'positive',
   l: 'list',
   s: 'single'
 };
@@ -55,27 +56,50 @@ then from your terminal you can play with settings:
 ```
 node index.js --single hi
 {
-  flag: false,
+  positive: false,
+  negative: true,
   list: ['one', 'two'],
   single: 'hi'
 }
 
-node index.js -f -l just
+node index.js -p --negative -l just
 {
-  flag: true,
+  positive: true,
+  negative: false,
   list: ['just'],
   single: 'thing'
 }
 
-node index.js --flag --nonsense
+node index.js --positive --nonsense
 {
-  flag: true,
+  positive: true,
+  negative: true,
   list: ['one', 'two'],
   single: 'thing'
 }
 ```
 
 Pretty straight forward, don't you think?
+
+**See that types are garantees to stay same as in defaults. All extra arguments are not accepted which adds some extra security.**
+
+### Supported Options Types
+
+There are three types of options supported - booleans, stringsa and Arrays of strungs.
+
+#### Booleans (Toggables)
+
+Boolean values have no any parameters. You can define default value to both `true` or `false`. Passig that option from terminal then toggle its value (`true => false` or `false => true`).
+
+### Strings
+
+Single string value like `single: 'b'`. If value with spaces is passed as arg, this value will become string with spaces `--single with space` => `{ single: 'with space'}`.
+If value is not passed like `--single` value becomes `undefined`.
+
+### Arrays of strings
+
+If default value is string, spaces passed from cmd are used as separator for items like `--arr one two 3` => `{ arr: ['one', 'two', '3'] }`.
+If value is not pased, it's parsed as empty array like `--arr` => `{ arr: [] }`.
 
 ## Limitations
 
