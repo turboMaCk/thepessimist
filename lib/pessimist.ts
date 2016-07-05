@@ -22,9 +22,11 @@ function parseOption <T> (value : any[], def : T) : T {
 function sanitiseArgument(argument : string) : string {
     const arr : string[] = argument.split('-');
     if (arr.length > 1) {
-        const letters : string[] = arr[1].split('');
-        const upperCased : string = letters[0].toUpperCase() + (letters.slice(1)).join('');
-        return arr[0] + upperCased;
+        const nextWords : string[] = arr.slice(1).map((word) => {
+            const letters : string[] = word.split('');
+            return letters[0].toUpperCase() + (letters.slice(1)).join('');
+        });
+        return arr[0] + nextWords.join('');
     }
     return arr[0];
 }

@@ -116,12 +116,20 @@ describe('options parsing', () => {
             expect(pessimist.bind(this, def, parsed)).toThrow();
         });
 
-        it('dash to cammel calse', () => {
+        it('dash to pascal calse', () => {
             const def = {
                 someThing: false
             };
             const parsed = cliArgs('--some-thing');
             expect(pessimist(def, parsed).someThing).toEqual(true);
+        });
+
+        it('dash to pascal calse n words', () => {
+            const def = {
+                iAmLongOption: true
+            };
+            const parsed = cliArgs('--i-am-long-option');
+            expect(pessimist(def, parsed).iAmLongOption).toEqual(false);
         });
 
         it('do not breaks when - is passed as value', () => {
