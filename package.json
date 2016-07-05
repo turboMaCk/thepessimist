@@ -19,7 +19,7 @@
     "parsing"
   ],
   "author": "Marek Fajkus",
-  "license": "GPL-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/turbomack/thepessimist/issues"
   },
