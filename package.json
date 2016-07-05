@@ -1,6 +1,6 @@
 {
   "name": "thepessimist",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Light-weight unix style argv option parsing with depression. Optimist alternative with purer white-list oriented api.",
   "main": "index.js",
   "scripts": {
